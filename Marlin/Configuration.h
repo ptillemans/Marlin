@@ -1,3 +1,5 @@
+#include <U8glib.h>
+
 #ifndef CONFIGURATION_H
 #define CONFIGURATION_H
 
@@ -43,6 +45,7 @@
 
 // The following define selects which electronics board you have.
 // Please choose the name from boards.h that matches your setup
+#define MOTHERBOARD BOARD_RAMPS_13_EFB
 #ifndef MOTHERBOARD
   #define MOTHERBOARD BOARD_ULTIMAKER
 #endif
@@ -104,10 +107,10 @@
 // 147 is Pt100 with 4k7 pullup
 // 110 is Pt100 with 1k pullup (non standard)
 
-#define TEMP_SENSOR_0 -1
-#define TEMP_SENSOR_1 -1
+#define TEMP_SENSOR_0 1
+#define TEMP_SENSOR_1 0
 #define TEMP_SENSOR_2 0
-#define TEMP_SENSOR_BED 0
+#define TEMP_SENSOR_BED 1
 
 // This makes temp sensor 1 a redundant sensor for sensor 0. If the temperatures difference between these sensors is to high the print will be aborted.
 //#define TEMP_SENSOR_1_AS_REDUNDANT
@@ -129,10 +132,10 @@
 // When temperature exceeds max temp, your heater will be switched off.
 // This feature exists to protect your hotend from overheating accidentally, but *NOT* from thermistor short/failure!
 // You should use MINTEMP for thermistor short/failure protection.
-#define HEATER_0_MAXTEMP 275
-#define HEATER_1_MAXTEMP 275
-#define HEATER_2_MAXTEMP 275
-#define BED_MAXTEMP 150
+#define HEATER_0_MAXTEMP 255
+#define HEATER_1_MAXTEMP 255
+#define HEATER_2_MAXTEMP 255
+#define BED_MAXTEMP 115
 
 // If your bed has low resistance e.g. .6 ohm and throws the fuse you can duty cycle it to reduce the
 // average current. The value should be an integer and the heat bed will be turned on for 1 interval of
@@ -160,9 +163,11 @@
 
 // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
 // Ultimaker
-    #define  DEFAULT_Kp 22.2
-    #define  DEFAULT_Ki 1.08
-    #define  DEFAULT_Kd 114
+
+// calibrated on 2015-09-21 :
+    #define  DEFAULT_Kp 20.87
+    #define  DEFAULT_Ki 1.00
+    #define  DEFAULT_Kd 108.58
 
 // MakerGear
 //    #define  DEFAULT_Kp 7.0
@@ -248,15 +253,15 @@ your extruder heater takes 2 minutes to hit the target on heating.
 // uncomment the 2 defines below:
 
 // Parameters for all extruder heaters
-//#define THERMAL_RUNAWAY_PROTECTION_PERIOD 40 //in seconds
-//#define THERMAL_RUNAWAY_PROTECTION_HYSTERESIS 4 // in degree Celsius
+#define THERMAL_RUNAWAY_PROTECTION_PERIOD 40 //in seconds
+#define THERMAL_RUNAWAY_PROTECTION_HYSTERESIS 4 // in degree Celsius
 
 // If you want to enable this feature for your bed heater,
 // uncomment the 2 defines below:
 
 // Parameters for the bed heater
-//#define THERMAL_RUNAWAY_PROTECTION_BED_PERIOD 20 //in seconds
-//#define THERMAL_RUNAWAY_PROTECTION_BED_HYSTERESIS 2 // in degree Celsius
+#define THERMAL_RUNAWAY_PROTECTION_BED_PERIOD 20 //in seconds
+#define THERMAL_RUNAWAY_PROTECTION_BED_HYSTERESIS 2 // in degree Celsius
 //===========================================================================
 
 
@@ -290,13 +295,13 @@ your extruder heater takes 2 minutes to hit the target on heating.
 #endif
 
 // The pullups are needed if you directly connect a mechanical endswitch between the signal and ground pins.
-const bool X_MIN_ENDSTOP_INVERTING = true; // set to true to invert the logic of the endstop.
-const bool Y_MIN_ENDSTOP_INVERTING = true; // set to true to invert the logic of the endstop.
-const bool Z_MIN_ENDSTOP_INVERTING = true; // set to true to invert the logic of the endstop.
-const bool X_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of the endstop.
-const bool Y_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of the endstop.
-const bool Z_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of the endstop.
-//#define DISABLE_MAX_ENDSTOPS
+const bool X_MIN_ENDSTOP_INVERTING = false; // set to true to invert the logic of the endstop.
+const bool Y_MIN_ENDSTOP_INVERTING = false; // set to true to invert the logic of the endstop.
+const bool Z_MIN_ENDSTOP_INVERTING = false; // set to true to invert the logic of the endstop.
+const bool X_MAX_ENDSTOP_INVERTING = false; // set to true to invert the logic of the endstop.
+const bool Y_MAX_ENDSTOP_INVERTING = false; // set to true to invert the logic of the endstop.
+const bool Z_MAX_ENDSTOP_INVERTING = false; // set to true to invert the logic of the endstop.
+#define DISABLE_MAX_ENDSTOPS
 //#define DISABLE_MIN_ENDSTOPS
 
 // Disable max endstops for compatibility with endstop checking routine
@@ -317,9 +322,9 @@ const bool Z_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of
 #define DISABLE_E false // For all extruders
 #define DISABLE_INACTIVE_EXTRUDER true //disable only inactive extruders and keep active extruder enabled
 
-#define INVERT_X_DIR true    // for Mendel set to false, for Orca set to true
-#define INVERT_Y_DIR false    // for Mendel set to true, for Orca set to false
-#define INVERT_Z_DIR true     // for Mendel set to false, for Orca set to true
+#define INVERT_X_DIR false    // for Mendel set to false, for Orca set to true
+#define INVERT_Y_DIR true     // for Mendel set to true, for Orca set to false
+#define INVERT_Z_DIR false     // for Mendel set to false, for Orca set to true
 #define INVERT_E0_DIR false   // for direct drive extruder v9 set to true, for geared extruder set to false
 #define INVERT_E1_DIR false    // for direct drive extruder v9 set to true, for geared extruder set to false
 #define INVERT_E2_DIR false   // for direct drive extruder v9 set to true, for geared extruder set to false
@@ -338,7 +343,7 @@ const bool Z_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of
 #define X_MIN_POS 0
 #define Y_MAX_POS 205
 #define Y_MIN_POS 0
-#define Z_MAX_POS 200
+#define Z_MAX_POS 190
 #define Z_MIN_POS 0
 
 #define X_MAX_LENGTH (X_MAX_POS - X_MIN_POS)
@@ -479,12 +484,12 @@ const bool Z_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of
 
 // default settings
 
-#define DEFAULT_AXIS_STEPS_PER_UNIT   {78.7402,78.7402,200.0*8/3,760*1.1}  // default steps per unit for Ultimaker
-#define DEFAULT_MAX_FEEDRATE          {500, 500, 5, 25}    // (mm/sec)
-#define DEFAULT_MAX_ACCELERATION      {9000,9000,100,10000}    // X, Y, Z, E maximum start speed for accelerated moves. E default values are good for Skeinforge 40+, for older versions raise them a lot.
+#define DEFAULT_AXIS_STEPS_PER_UNIT   {80.2,80.2,4000,680}  // default steps per unit for Ultimaker
+#define DEFAULT_MAX_FEEDRATE          {500, 500, 1, 45}    // (mm/sec)
+#define DEFAULT_MAX_ACCELERATION      {9000,9000,100,300}    // X, Y, Z, E maximum start speed for accelerated moves. E default values are good for Skeinforge 40+, for older versions raise them a lot.
 
 #define DEFAULT_ACCELERATION          3000    // X, Y, Z and E max acceleration in mm/s^2 for printing moves
-#define DEFAULT_RETRACT_ACCELERATION  3000   // X, Y, Z and E max acceleration in mm/s^2 for retracts
+#define DEFAULT_RETRACT_ACCELERATION  300   // X, Y, Z and E max acceleration in mm/s^2 for retracts
 
 // Offset of the extruders (uncomment if using more than one and relying on firmware to position when changing).
 // The offset has to be X=0, Y=0 for the extruder 0 hotend (default extruder).
@@ -495,7 +500,7 @@ const bool Z_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of
 // The speed change that does not require acceleration (i.e. the software might assume it can be done instantaneously)
 #define DEFAULT_XYJERK                20.0    // (mm/sec)
 #define DEFAULT_ZJERK                 0.4     // (mm/sec)
-#define DEFAULT_EJERK                 5.0    // (mm/sec)
+#define DEFAULT_EJERK                 2.0    // (mm/sec)
 
 //===========================================================================
 //=============================Additional Features===========================
@@ -559,7 +564,7 @@ const bool Z_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of
 // http://reprap.org/wiki/RepRapDiscount_Full_Graphic_Smart_Controller
 //
 // ==> REMEMBER TO INSTALL U8glib to your ARDUINO library folder: http://code.google.com/p/u8glib/wiki/u8glib
-//#define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER
+#define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER
 
 // The RepRapWorld REPRAPWORLD_KEYPAD v1.1
 // http://reprapworld.com/?products_details&products_id=202&cPath=1591_1626
