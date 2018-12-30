@@ -380,10 +380,10 @@
 
   // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
 
-  // Ultimaker
-  #define DEFAULT_Kp 20.87
-  #define DEFAULT_Ki 1.00
-  #define DEFAULT_Kd 108.58
+  // Prusa i3, calibrated 2018-12-30
+  #define DEFAULT_Kp 27.23
+  #define DEFAULT_Ki 1.60
+  #define DEFAULT_Kd 115.98
 
   // MakerGear
   //#define DEFAULT_Kp 7.0
@@ -414,7 +414,7 @@
  * heater. If your configuration is significantly different than this and you don't understand
  * the issues involved, don't use bed PID until someone else verifies that your hardware works.
  */
-//#define PIDTEMPBED
+#define PIDTEMPBED
 
 //#define BED_LIMIT_SWITCHING
 
@@ -1224,7 +1224,7 @@
 // M501 - reads parameters from EEPROM (if you need reset them after you changed them temporarily).
 // M502 - reverts to the default "factory settings".  You still need to store them in EEPROM afterwards if you want to.
 //
-//#define EEPROM_SETTINGS // Enable for M500 and M501 commands
+#define EEPROM_SETTINGS // Enable for M500 and M501 commands
 //#define DISABLE_M503    // Saves ~2700 bytes of PROGMEM. Disable for release!
 #define EEPROM_CHITCHAT   // Give feedback on EEPROM commands. Disable to save PROGMEM.
 
@@ -1530,7 +1530,7 @@
 //
 // Note: Usually sold with a white PCB.
 //
-#define REPRAP_DISCOUNT_SMART_CONTROLLER
+// #define REPRAP_DISCOUNT_SMART_CONTROLLER
 
 //
 // ULTIMAKER Controller.
@@ -1657,8 +1657,10 @@
 // RepRapDiscount FULL GRAPHIC Smart Controller
 // http://reprap.org/wiki/RepRapDiscount_Full_Graphic_Smart_Controller
 //
-//#define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER
-
+#define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER
+#define ST7920_DELAY_1 DELAY_NS(0)
+#define ST7920_DELAY_2 DELAY_NS(250)
+#define ST7920_DELAY_3 DELAY_NS(0)
 //
 // ReprapWorld Graphical LCD
 // https://reprapworld.com/?products_details&products_id/1218
