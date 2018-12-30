@@ -894,7 +894,7 @@ static_assert(X_MAX_LENGTH >= X_BED_SIZE && Y_MAX_LENGTH >= Y_BED_SIZE,
 /**
  * Bed Leveling Requirements
  */
-
+/
 #if ENABLED(AUTO_BED_LEVELING_UBL) || ENABLED(AUTO_BED_LEVELING_3POINT)
   static_assert(WITHIN(PROBE_PT_1_X, MIN_PROBE_X, MAX_PROBE_X), "PROBE_PT_1_X is outside the probe region.");
   static_assert(WITHIN(PROBE_PT_2_X, MIN_PROBE_X, MAX_PROBE_X), "PROBE_PT_2_X is outside the probe region.");
